@@ -35,6 +35,19 @@ public class ActionGame {
     private void playRound() {
         System.out.println("---------------------");
         System.out.println(currentPlayer.getName() + "'s turn! Current gold: " + currentPlayer.getGold() + "  Current sword strength: " + currentPlayer.getSword().getStrength());
+        System.out.println("Would you like to gain more health (press 1) or strength (press 2)? Press 3 to skip.");
+        int option = scan.nextInt();
+        scan.nextLine();
+        if (option == 2) {
+            System.out.println("Gold: " + currentPlayer.getGold());
+            System.out.println("How much gold would you like to spent?"); //add check if valid value later
+            int amount = (int) (scan.nextInt() * 0.1);
+            currentPlayer.addStrength(amount);
+            currentPlayer.addGold(-amount);
+            System.out.println("Now you have " + currentPlayer.getGold() + " gold and " + currentPlayer.getSword() + " strength!");
+        } else if (option == 1) {
+
+        }
         System.out.println("---------------------");
         Enemy enemy = new Enemy(getEnemyName());
         System.out.println("A " + enemy.getName() + " appears!");
@@ -50,9 +63,6 @@ public class ActionGame {
         System.out.println("It left behind " + gold + " gold");
         currentPlayer.addGold(gold);
         System.out.println(currentPlayer.getName() + " collects it and now has " + currentPlayer.getGold() + " gold");
-        System.out.println("Health: ");
-        System.out.println("Strength: ");
-
     }
 
     private boolean isGameOver() {

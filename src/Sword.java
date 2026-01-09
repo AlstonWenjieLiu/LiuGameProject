@@ -15,4 +15,12 @@ public class Sword {
             strength = 0;
         }
     }
+
+    public void addStrength(int strength) {
+        this.strength += strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
 }

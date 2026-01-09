@@ -1,5 +1,5 @@
 public class GameRunner {
-    static void main() {
+    public static void main(String[] args) {
         ActionGame game = new ActionGame();
         game.play();
     }

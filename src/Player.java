@@ -23,6 +23,10 @@ public class Player {
         return sword;
     }
 
+    public int getStrength() {
+        return sword.getStrength();
+    }
+
     // public methods
     public int attack(Enemy enemyToAttach) {
         int attackAmount = (int) (Math.random() * 20) + 1;
@@ -35,7 +39,13 @@ public class Player {
         return attackAmount;
     }
 
+    public void addStrength(int amount) {
+        sword.addStrength(amount);
+    }
+
     public void addGold(int goldToAdd) {
         gold += goldToAdd;
     }
+
+
 }
