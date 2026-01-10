@@ -2,12 +2,17 @@ public class Player {
     private String name;
     private int gold;
     private Sword sword;
+    private int numberOfActions;
+    private double totalDamage;
+
 
     public Player(String name) {
         this.name = name;
         gold = 0;
         int str = (int) (Math.random() * 10) + 10;
         sword = new Sword(str);
+        numberOfActions = 0;
+        totalDamage = 0;
     }
 
     // getters
@@ -39,12 +44,20 @@ public class Player {
         return attackAmount;
     }
 
+    public double getScore() {
+        return totalDamage + gold - numberOfActions;
+    }
+
     public void addStrength(int amount) {
         sword.addStrength(amount);
     }
 
     public void addGold(int goldToAdd) {
         gold += goldToAdd;
+    }
+
+    public void addTotalDamage(double amount) {
+        totalDamage += amount;
     }
 
 

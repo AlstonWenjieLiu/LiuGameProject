@@ -57,6 +57,7 @@ public class ActionGame {
             scan.nextLine();
             int playerAttack = currentPlayer.attack(enemy);
             System.out.println(currentPlayer.getName() + " attacks for " + playerAttack);
+            currentPlayer.addTotalDamage((double) playerAttack);
         }
         System.out.println(currentPlayer.getName() + " has slain the " + enemy.getName());
         int gold = enemy.dropGold();
@@ -94,9 +95,11 @@ public class ActionGame {
         System.out.println(p2.getName() + ": " + p2.getGold());
         if (p1.getGold() >= WINNING_GOLD) {
             System.out.println(p1.getName() + " wins!");
+            System.out.println("Score: " + p1.getScore());
         }
         if (p2.getGold() >= WINNING_GOLD) {
             System.out.println(p2.getName() + " wins!");
+            System.out.println("Score: " + p2.getScore());
         }
     }
 }
