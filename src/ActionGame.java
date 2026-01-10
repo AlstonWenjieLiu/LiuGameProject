@@ -6,6 +6,8 @@ public class ActionGame {
     private Player p1;
     private Player p2;
     private Player currentPlayer;
+    String p1Name = "";
+    String p2Name = "";
 
     public ActionGame() {
         WINNING_GOLD = 100;
@@ -18,10 +20,16 @@ public class ActionGame {
     }
 
     public void play() {
-        System.out.print("Enter player 1 name: ");
-        String p1Name = scan.nextLine();
-        System.out.print("Enter player 2 name: ");
-        String p2Name = scan.nextLine();
+        while (true) {
+            System.out.print("Enter player 1 name: ");
+            p1Name = scan.nextLine();
+            System.out.print("Enter player 2 name: ");
+            p2Name = scan.nextLine();
+            if (!sameName()) break;
+            System.out.println("They are the same name ):<");
+            System.out.println("Please enter different names!");
+            System.out.println();
+        }
         p1 = new Player(p1Name);
         p2 = new Player(p2Name);
         currentPlayer = p1;
@@ -44,8 +52,8 @@ public class ActionGame {
                 System.out.println("Gold: " + currentPlayer.getGold());
                 System.out.println("How much gold would you like to spent?"); //add check if valid value later
                 amount = scan.nextInt();
-                if (amount <= currentPlayer.getGold()) break;
-                System.out.println("You do not have that much gold!");
+                if (enoughGold(amount)) break;
+                System.out.println("Please enter a valid amount.");
             }
             currentPlayer.addStrength((int) (amount * 0.1));
             currentPlayer.addGold(-amount);
@@ -56,8 +64,8 @@ public class ActionGame {
                 System.out.println("Gold: " + currentPlayer.getGold());
                 System.out.println("How much gold would you like to spent?"); //add check if valid value later
                 amount = scan.nextInt();
-                if (amount <= currentPlayer.getGold()) break;
-                System.out.println("You do not have that much gold!");
+                if (enoughGold(amount)) break;
+                System.out.println("Please enter a valid amount.");
             }
             currentPlayer.addHealth(amount * 0.1);
             currentPlayer.addGold(-amount);
@@ -119,6 +127,10 @@ public class ActionGame {
     }
 
     private boolean sameName() {
+        return p1Name.equals(p2Name);
+    }
 
+    private boolean enoughGold(double supposedGivenGold) {
+        return (supposedGivenGold <= currentPlayer.getGold() && supposedGivenGold >= 0);
     }
 }
