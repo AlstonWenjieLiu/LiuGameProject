@@ -34,19 +34,34 @@ public class ActionGame {
 
     private void playRound() {
         System.out.println("---------------------");
-        System.out.println(currentPlayer.getName() + "'s turn! Current gold: " + currentPlayer.getGold() + "  Current sword strength: " + currentPlayer.getSword().getStrength());
+        System.out.println(currentPlayer.getName() + "'s turn! Current gold: " + currentPlayer.getGold() + "  Current sword strength: " + currentPlayer.getSword().getStrength() + "  Current health: " + currentPlayer.getHealth());
         System.out.println("Would you like to gain more health (press 1) or strength (press 2)? Press 3 to skip.");
         int option = scan.nextInt();
         scan.nextLine();
         if (option == 2) {
-            System.out.println("Gold: " + currentPlayer.getGold());
-            System.out.println("How much gold would you like to spent?"); //add check if valid value later
-            int amount = (int) (scan.nextInt() * 0.1);
-            currentPlayer.addStrength(amount);
+            int amount = 0;
+            while (true) {
+                System.out.println("Gold: " + currentPlayer.getGold());
+                System.out.println("How much gold would you like to spent?"); //add check if valid value later
+                amount = scan.nextInt();
+                if (amount <= currentPlayer.getGold()) break;
+                System.out.println("You do not have that much gold!");
+            }
+            currentPlayer.addStrength((int) (amount * 0.1));
             currentPlayer.addGold(-amount);
-            System.out.println("Now you have " + currentPlayer.getGold() + " gold and " + currentPlayer.getSword() + " strength!");
+            System.out.println("Now you have " + currentPlayer.getGold() + " gold and " + currentPlayer.getSword() + " strength! ⚔");
         } else if (option == 1) {
-
+            int amount = 0;
+            while (true) {
+                System.out.println("Gold: " + currentPlayer.getGold());
+                System.out.println("How much gold would you like to spent?"); //add check if valid value later
+                amount = scan.nextInt();
+                if (amount <= currentPlayer.getGold()) break;
+                System.out.println("You do not have that much gold!");
+            }
+            currentPlayer.addHealth(amount * 0.1);
+            currentPlayer.addGold(-amount);
+            System.out.println("Now you have " + currentPlayer.getGold() + " gold and " + currentPlayer.getHealth() + " health! ♡");
         }
         System.out.println("---------------------");
         Enemy enemy = new Enemy(getEnemyName());
@@ -101,5 +116,9 @@ public class ActionGame {
             System.out.println(p2.getName() + " wins!");
             System.out.println("Score: " + p2.getScore());
         }
+    }
+
+    private boolean sameName() {
+
     }
 }

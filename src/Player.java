@@ -4,6 +4,7 @@ public class Player {
     private Sword sword;
     private int numberOfActions;
     private double totalDamage;
+    private double health;
 
 
     public Player(String name) {
@@ -13,6 +14,7 @@ public class Player {
         sword = new Sword(str);
         numberOfActions = 0;
         totalDamage = 0;
+        health = 100;
     }
 
     // getters
@@ -30,6 +32,10 @@ public class Player {
 
     public int getStrength() {
         return sword.getStrength();
+    }
+
+    public double getHealth() {
+        return health;
     }
 
     // public methods
@@ -60,5 +66,7 @@ public class Player {
         totalDamage += amount;
     }
 
-
+    public void addHealth(double amount) {
+        health += amount;
+    }
 }
